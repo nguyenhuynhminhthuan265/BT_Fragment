@@ -90,7 +90,8 @@
                android:layout_weight="1"
                android:layout_height="wrap_content"
                android:text="First"
-
+               android:textSelectHandleLeft="@android:color/holo_orange_light"
+               android:textAllCaps="false"
                />
 
            <Button
@@ -98,8 +99,9 @@
                android:layout_width="0dp"
                android:layout_weight="1"
                android:layout_height="wrap_content"
-               android:text="Prev"
-
+               android:text="Pre"
+               android:textSelectHandleLeft="@android:color/holo_orange_light"
+               android:textAllCaps="false"
                />
 
 
@@ -109,7 +111,8 @@
                android:layout_weight="1"
                android:layout_height="wrap_content"
                android:text="Next"
-
+               android:textSelectHandleLeft="@android:color/holo_orange_light"
+               android:textAllCaps="false"
                />
 
 
@@ -119,7 +122,8 @@
                android:layout_weight="1"
                android:layout_height="wrap_content"
                android:text="Last"
-
+               android:textSelectHandleLeft="@android:color/holo_orange_light"
+               android:textAllCaps="false"
                />
 
 

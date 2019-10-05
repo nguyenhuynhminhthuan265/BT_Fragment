@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,10 +16,10 @@ import java.util.Date;
 
 public class FragmentRed extends Fragment implements FragmentCallback {
     MainActivity main;
-    TextView edtMaso;
-    TextView edtHoten;
-    TextView edtLop;
-    TextView edtDiem;
+    TextView maSo;
+    TextView hoTen;
+    TextView lop;
+    TextView diem;
     Button btnFirst;
     Button btnPre;
     Button btnNext;
@@ -50,14 +49,14 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         LinearLayout view_layout_red = (LinearLayout) inflater.inflate(
                 R.layout.layout_red, null);
 // plumbing - get a reference to widgets in the inflated layout
-        edtMaso = view_layout_red.findViewById(R.id.maso);
-        edtHoten =  view_layout_red.findViewById(R.id.hoten);
-        edtLop = view_layout_red.findViewById(R.id.lop);
-        edtDiem = view_layout_red.findViewById(R.id.diemtb);
+        maSo = view_layout_red.findViewById(R.id.maso);
+        hoTen =  view_layout_red.findViewById(R.id.hoten);
+        lop = view_layout_red.findViewById(R.id.lop);
+        diem = view_layout_red.findViewById(R.id.diemtb);
         try {
             Bundle arguments = getArguments();
             String redMessage = arguments.getString("arg1", "");
-            edtMaso.setText(redMessage);
+            maSo.setText(redMessage);
         } catch (Exception e) {
             Log.e("RED BUNDLE ERROR - ", "" + e.getMessage());
         }
@@ -70,7 +69,7 @@ public class FragmentRed extends Fragment implements FragmentCallback {
             @Override
             public void onClick(View v) {
                 String redMessage = "Red clock:\n" + new Date().toString();
-                edtMaso.setText(redMessage);
+                maSo.setText(redMessage);
                 //main.onMsgFromFragToMain("RED-FRAG", redMessage);
             }
         });
@@ -81,9 +80,9 @@ public class FragmentRed extends Fragment implements FragmentCallback {
     public void onMsgFromMainToFragment(Student student) {
 // receiving a message from MainActivity (it may happen at any point in time)
         //txtMaSo.setText("THIS MESSAGE COMES FROM MAIN:" + strValue);
-        edtMaso.setText(student.get_id());
-        edtHoten.setText(student.get_name());
-        edtLop.setText(student.get_class());
-        edtDiem.setText(String.valueOf(student.get_grade()));
+        maSo.setText(student.get_id());
+        hoTen.setText(student.get_name());
+        lop.setText(student.get_class());
+        diem.setText(String.valueOf(student.get_grade()));
     }
 }
