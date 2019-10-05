@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:stretchColumns="*">
+
+
 
     <TextView
 
@@ -10,73 +12,122 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        />
 
-    <TextView
-        android:id="@+id/hoten"
-        android:layout_width="match_parent"
+    <TableRow
         android:layout_height="wrap_content"
-        android:text="Họ tên :"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/lop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Lớp :"
-        android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/diemtb"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Điểm trung bình :"
-        android:textSize="30sp" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         >
-
-        <Button
-            android:id="@+id/btnFirst"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/txtHoten"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="First"
-            android:layout_weight="1"
+            android:text="Họ tên :"
             />
 
-        <Button
-            android:id="@+id/btnPrev"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/hoten"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Prev"
-            android:layout_weight="1"
-            />
 
 
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:layout_weight="1"
             />
 
 
-        <Button
-            android:id="@+id/btnLast"
-            android:layout_width="0dp"
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        >
+        <TextView
+            android:id="@+id/txtLop"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Last"
-            android:layout_weight="1"
+            android:text="Lớp :"
+            />
+        <TextView
+            android:id="@+id/lop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
             />
 
 
 
+    </TableRow>
+   <TableRow
+       android:layout_height="wrap_content"
+       android:layout_width="match_parent">
 
-    </LinearLayout>
+       <TextView
+           android:id="@+id/txtdiemtb"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Điểm trung bình :"
+           />
 
-</LinearLayout>
+
+       <TextView
+           android:id="@+id/diemtb"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+
+           />
+
+   </TableRow>
+
+       <TableRow
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+
+           >
+           <Button
+               android:id="@+id/btnFirst"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:text="First"
+
+               />
+
+           <Button
+               android:id="@+id/btnPrev"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:text="Prev"
+
+               />
+
+
+           <Button
+               android:id="@+id/btnNext"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:text="Next"
+
+               />
+
+
+           <Button
+               android:id="@+id/btnLast"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:text="Last"
+
+               />
+
+
+
+
+       </TableRow>
+
+
+
+
+</TableLayout>

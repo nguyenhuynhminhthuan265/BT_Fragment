@@ -35,7 +35,7 @@ public class CustomListAdapter extends ArrayAdapter<Student> {
         ImageView imgIcon = row.findViewById(R.id.imageView);
 
         txtName.setText(students.get(position).get_name());
-        imgIcon.setImageResource(students.get(position).icon);
+        imgIcon.setImageResource(students.get(position).getIcon());
 
         parent.setBackgroundColor(Color.TRANSPARENT);
         return row;

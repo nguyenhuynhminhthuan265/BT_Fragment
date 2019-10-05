@@ -1,5 +1,5 @@
 package com.example.bt_fragment;
 
 public interface FragmentCallback {
-    public void onMsgFromMainToFragment(String strValue);
+    public void onMsgFromMainToFragment(Student student);
 }

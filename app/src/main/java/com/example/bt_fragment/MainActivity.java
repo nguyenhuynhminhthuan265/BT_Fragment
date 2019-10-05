@@ -1,19 +1,13 @@
 package com.example.bt_fragment;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import android.app.Activity;
 import android.app.FragmentTransaction;
-import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-public class MainActivity extends ListActivity implements MainCallbacks {
+public class MainActivity extends Activity implements MainCallbacks {
     FragmentTransaction ft;
     FragmentBlue blueFragment;
     FragmentRed redFragment;
@@ -22,12 +16,12 @@ public class MainActivity extends ListActivity implements MainCallbacks {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ft = getFragmentManager().beginTransaction();
-        blueFragment = FragmentBlue.newInstance("first-blue");
+        blueFragment = FragmentBlue.newInstance("");
         ft.replace(R.id.framentA, blueFragment);
         ft.commit();
 // create a new RED fragment - show it
         ft = getFragmentManager().beginTransaction();
-        redFragment = FragmentRed.newInstance("first-red");
+        redFragment = FragmentRed.newInstance("");
         ft.replace(R.id.framentB, redFragment);
         ft.commit();
 
@@ -36,10 +30,10 @@ public class MainActivity extends ListActivity implements MainCallbacks {
 
 
     @Override
-    public void onMsgFromFragToMain(String sender, String strValue) {
+    public void onMsgFromFragToMain(String sender,Student student) {
         // show message arriving to MainActivity
         Toast.makeText(getApplication(),
-                " MAIN GOT>> " + sender + "\n" + strValue, Toast.LENGTH_LONG)
+                student.toString(), Toast.LENGTH_LONG)
                 .show();
         if (sender.equals("RED-FRAG")) {
 // TODO: if needed, do here something on behalf of the RED fragment
@@ -47,8 +41,7 @@ public class MainActivity extends ListActivity implements MainCallbacks {
         if (sender.equals("BLUE-FRAG")) {
             try {
 // forward blue-data to redFragment using its callback method
-                redFragment.onMsgFromMainToFragment("\nSender: " + sender
-                        + "\nMsg: " + strValue);
+                redFragment.onMsgFromMainToFragment(student);
             } catch (Exception e) {
                 Log.e("ERROR", "onStrFromFragToMain " + e.getMessage());
             }

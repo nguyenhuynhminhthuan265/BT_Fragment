@@ -56,4 +56,15 @@ public class Student {
     public void setIcon(int icon) {
         this.icon = icon;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "_id='" + _id + '\'' +
+                ", _name='" + _name + '\'' +
+                ", _class='" + _class + '\'' +
+                ", _grade=" + _grade +
+                ", icon=" + icon +
+                '}';
+    }
 }
