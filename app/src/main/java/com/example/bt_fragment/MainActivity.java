@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends Activity implements MainCallbacks {
     FragmentTransaction ft;
     FragmentBlue blueFragment;
@@ -30,10 +32,10 @@ public class MainActivity extends Activity implements MainCallbacks {
 
 
     @Override
-    public void onMsgFromFragToMain(String sender,Student student) {
+    public void onMsgFromFragToMain(String sender, List<Student> students, int position) {
         // show message arriving to MainActivity
         Toast.makeText(getApplication(),
-                student.toString(), Toast.LENGTH_LONG)
+                students.get(position).toString(), Toast.LENGTH_LONG)
                 .show();
         if (sender.equals("RED-FRAG")) {
 // TODO: if needed, do here something on behalf of the RED fragment
@@ -41,7 +43,7 @@ public class MainActivity extends Activity implements MainCallbacks {
         if (sender.equals("BLUE-FRAG")) {
             try {
 // forward blue-data to redFragment using its callback method
-                redFragment.onMsgFromMainToFragment(student);
+                redFragment.onMsgFromMainToFragment(students, position);
             } catch (Exception e) {
                 Log.e("ERROR", "onStrFromFragToMain " + e.getMessage());
             }

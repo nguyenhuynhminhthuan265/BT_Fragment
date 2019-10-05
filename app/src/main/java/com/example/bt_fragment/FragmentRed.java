@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Date;
-
+import java.util.List;
 
 
 public class FragmentRed extends Fragment implements FragmentCallback {
@@ -65,24 +65,79 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         btnNext = (Button) view_layout_red.findViewById(R.id.btnNext);
         btnPre = (Button) view_layout_red.findViewById(R.id.btnPrev);
         btnLast = (Button) view_layout_red.findViewById(R.id.btnLast);
-        btnFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String redMessage = "Red clock:\n" + new Date().toString();
-                maSo.setText(redMessage);
-                //main.onMsgFromFragToMain("RED-FRAG", redMessage);
-            }
-        });
+
         return view_layout_red;
 
     }
     @Override
-    public void onMsgFromMainToFragment(Student student) {
+    public void onMsgFromMainToFragment(final List<Student> students, final int position) {
 // receiving a message from MainActivity (it may happen at any point in time)
         //txtMaSo.setText("THIS MESSAGE COMES FROM MAIN:" + strValue);
-        maSo.setText(student.get_id());
-        hoTen.setText(student.get_name());
-        lop.setText(student.get_class());
-        diem.setText(String.valueOf(student.get_grade()));
+        maSo.setText(students.get(position).get_id());
+        hoTen.setText(students.get(position).get_name());
+        lop.setText(students.get(position).get_class());
+        diem.setText(String.valueOf(students.get(position).get_grade()));
+        final int size = students.size() - 1;
+        btnFirst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // String redMessage = "Red clock:\n" + new Date().toString();
+                //maSo.setText(redMessage);
+                //main.onMsgFromFragToMain("RED-FRAG", redMessage);
+                maSo.setText(students.get(0).get_id());
+                hoTen.setText(students.get(0).get_name());
+                lop.setText(students.get(0).get_class());
+                diem.setText(String.valueOf(students.get(0).get_grade()));
+                onMsgFromMainToFragment(students, 0);
+
+            }
+        });
+        btnLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // String redMessage = "Red clock:\n" + new Date().toString();
+                //maSo.setText(redMessage);
+                //main.onMsgFromFragToMain("RED-FRAG", redMessage);
+                maSo.setText(students.get(size).get_id());
+                hoTen.setText(students.get(size).get_name());
+                lop.setText(students.get(size).get_class());
+                diem.setText(String.valueOf(students.get(size).get_grade()));
+                onMsgFromMainToFragment(students, size);
+
+            }
+        });
+        btnPre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // String redMessage = "Red clock:\n" + new Date().toString();
+                //maSo.setText(redMessage);
+                //main.onMsgFromFragToMain("RED-FRAG", redMessage);
+//                maSo.setText(students.get(position-1).get_id());
+//                hoTen.setText(students.get(position-1).get_name());
+//                lop.setText(students.get(position-1).get_class());
+//                diem.setText(String.valueOf(students.get(position-1).get_grade()));
+                if (position>0){
+                    onMsgFromMainToFragment(students, position-1);
+                }
+
+            }
+        });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // String redMessage = "Red clock:\n" + new Date().toString();
+                //maSo.setText(redMessage);
+                //main.onMsgFromFragToMain("RED-FRAG", redMessage);
+//                maSo.setText(students.get(position+1).get_id());
+//                hoTen.setText(students.get(position+1).get_name());
+//                lop.setText(students.get(position+1).get_class());
+//                diem.setText(String.valueOf(students.get(position+1).get_grade()));
+                if (position<size){
+                    onMsgFromMainToFragment(students, position+1);
+                }
+
+            }
+        });
     }
 }

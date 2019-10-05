@@ -23,13 +23,25 @@ public class FragmentBlue extends Fragment {
     String message = "";
     // data to fill-up the ListView
     ArrayList<Student> students = new ArrayList<Student>();
-    Student stu1 = new Student("1","name","class", 9.5f,1);
+    Student stu1 = new Student("1","name1","class", 9.5f,1);
     Student stu2 = new Student("2","name2","class2", 9.5f,2);
+    Student stu3 = new Student("3","name3","class", 9.5f,1);
+    Student stu4 = new Student("4","name4","class2", 9.5f,2);
+    Student stu5 = new Student("5","name5","class", 9.5f,1);
+    Student stu6 = new Student("6","name6","class2", 9.5f,2);
+    Student stu7 = new Student("7","name7","class", 9.5f,1);
+    Student stu8 = new Student("8","name8","class2", 9.5f,2);
 
     public FragmentBlue() {
         main = null;
         students.add(stu1);
         students.add(stu2);
+        students.add(stu3);
+        students.add(stu4);
+        students.add(stu5);
+        students.add(stu6);
+        students.add(stu7);
+        students.add(stu8);
     }
 
     // convenient constructor(accept arguments, copy them to a bundle, binds bundle to fragment)
@@ -72,7 +84,7 @@ public class FragmentBlue extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-                main.onMsgFromFragToMain("BLUE-FRAG", students.get(position));
+                main.onMsgFromFragToMain("BLUE-FRAG", students, position);
                 txtBlue.setText("Blue selected row=" + position);
             }
         });
