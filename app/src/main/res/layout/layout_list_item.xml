@@ -13,7 +13,7 @@
 
         >
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/listIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_launcher_background"
@@ -21,7 +21,7 @@
             />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/listID"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="@null"

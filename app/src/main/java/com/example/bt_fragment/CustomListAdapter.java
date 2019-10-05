@@ -31,10 +31,10 @@ public class CustomListAdapter extends ArrayAdapter<Student> {
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         View row = layoutInflater.inflate(R.layout.layout_list_item, null);
 
-        TextView txtName = row.findViewById(R.id.textView2);
-        ImageView imgIcon = row.findViewById(R.id.imageView);
+        TextView txtName = row.findViewById(R.id.listID);
+        ImageView imgIcon = row.findViewById(R.id.listIcon);
 
-        txtName.setText(students.get(position).get_name());
+        txtName.setText(students.get(position).get_id());
         imgIcon.setImageResource(students.get(position).getIcon());
 
         parent.setBackgroundColor(Color.TRANSPARENT);

@@ -9,21 +9,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
 public class FragmentBlue extends Fragment {
     MainActivity main;
     Context context = null;
-    String message = "";
     // data to fill-up the ListView
     ArrayList<Student> students = new ArrayList<Student>();
-    Student stu1 = new Student("1","name1","class", 9.5f,1);
+    Integer[] icon={R.drawable.ntitled1,R.drawable.ntitled2,R.drawable.ntitled3,R.drawable.ntitled4,
+            R.drawable.ntitled5,R.drawable.ntitled6,R.drawable.ntitled7,R.drawable.ntitled8,R.drawable.ntitled9,
+            R.drawable.ntitled10,R.drawable.ntitled1,R.drawable.ntitled2,R.drawable.ntitled3,R.drawable.ntitled4,
+            R.drawable.ntitled5};
+    /*Student stu1 = new Student("1","name1","class", 9.5f,1);
     Student stu2 = new Student("2","name2","class2", 9.5f,2);
     Student stu3 = new Student("3","name3","class", 9.5f,1);
     Student stu4 = new Student("4","name4","class2", 9.5f,2);
@@ -42,6 +48,26 @@ public class FragmentBlue extends Fragment {
         students.add(stu6);
         students.add(stu7);
         students.add(stu8);
+    }*/
+
+    private void readResource() throws IOException
+    {
+        int idResource = R.raw.students;
+        InputStream is = this.getResources().openRawResource(idResource);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+
+        for (int i = 0; i < 15; i++) {
+            Student student = new Student();
+            student.set_id(reader.readLine());
+            student.set_name(reader.readLine());
+            student.set_class(reader.readLine());
+            student.set_grade(Float.parseFloat((reader.readLine())));
+            student.setIcon(icon[i]);
+            students.add(student);
+        }
+        reader.close();
+        is.close();
     }
 
     // convenient constructor(accept arguments, copy them to a bundle, binds bundle to fragment)
@@ -55,6 +81,11 @@ public class FragmentBlue extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            readResource();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             context = getActivity(); // use this reference to invoke main callbacks
             main=(MainActivity) getActivity();
