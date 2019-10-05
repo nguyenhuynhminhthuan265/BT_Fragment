@@ -96,6 +96,7 @@
                android:text="First"
                android:textSelectHandleLeft="@android:color/holo_orange_light"
                android:textAllCaps="false"
+               android:background="@color/colorPrimary"
                />
 
            <Button
@@ -106,6 +107,7 @@
                android:text="Pre"
                android:textSelectHandleLeft="@android:color/holo_orange_light"
                android:textAllCaps="false"
+               android:background="@android:color/holo_orange_light"
                />
 
 
@@ -117,6 +119,7 @@
                android:text="Next"
                android:textSelectHandleLeft="@android:color/holo_orange_light"
                android:textAllCaps="false"
+               android:background="@android:color/holo_red_light"
                />
 
 
@@ -128,6 +131,7 @@
                android:text="Last"
                android:textSelectHandleLeft="@android:color/holo_orange_light"
                android:textAllCaps="false"
+               android:background="@android:color/holo_green_light"
                />
 
 
