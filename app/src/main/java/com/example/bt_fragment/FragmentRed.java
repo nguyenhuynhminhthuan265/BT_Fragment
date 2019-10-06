@@ -53,6 +53,7 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         hoTen =  view_layout_red.findViewById(R.id.hoten);
         lop = view_layout_red.findViewById(R.id.lop);
         diem = view_layout_red.findViewById(R.id.diemtb);
+
         try {
             Bundle arguments = getArguments();
             String redMessage = arguments.getString("arg1", "");
@@ -88,6 +89,7 @@ public class FragmentRed extends Fragment implements FragmentCallback {
                 hoTen.setText(students.get(0).get_name());
                 lop.setText(students.get(0).get_class());
                 diem.setText(String.valueOf(students.get(0).get_grade()));
+                main.onMsgFromFragToMain("RED-FRAG", students, 0);
                 onMsgFromMainToFragment(students, 0);
 
             }
@@ -102,6 +104,7 @@ public class FragmentRed extends Fragment implements FragmentCallback {
                 hoTen.setText(students.get(size).get_name());
                 lop.setText(students.get(size).get_class());
                 diem.setText(String.valueOf(students.get(size).get_grade()));
+                main.onMsgFromFragToMain("RED-FRAG", students, size);
                 onMsgFromMainToFragment(students, size);
 
             }
@@ -117,6 +120,7 @@ public class FragmentRed extends Fragment implements FragmentCallback {
 //                lop.setText(students.get(position-1).get_class());
 //                diem.setText(String.valueOf(students.get(position-1).get_grade()));
                 if (position>0){
+                    main.onMsgFromFragToMain("RED-FRAG", students, position-1);
                     onMsgFromMainToFragment(students, position-1);
                 }
 
@@ -134,6 +138,7 @@ public class FragmentRed extends Fragment implements FragmentCallback {
 //                lop.setText(students.get(position+1).get_class());
 //                diem.setText(String.valueOf(students.get(position+1).get_grade()));
                 if (position<size){
+                    main.onMsgFromFragToMain("RED-FRAG", students,position+1);
                     onMsgFromMainToFragment(students, position+1);
                 }
 

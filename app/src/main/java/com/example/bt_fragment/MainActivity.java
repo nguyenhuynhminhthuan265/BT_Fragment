@@ -34,11 +34,9 @@ public class MainActivity extends Activity implements MainCallbacks {
     @Override
     public void onMsgFromFragToMain(String sender, List<Student> students, int position) {
         // show message arriving to MainActivity
-        Toast.makeText(getApplication(),
-                students.get(position).toString(), Toast.LENGTH_LONG)
-                .show();
+       // Toast.makeText(getApplication(),students.get(position).toString(), Toast.LENGTH_LONG).show();
         if (sender.equals("RED-FRAG")) {
-// TODO: if needed, do here something on behalf of the RED fragment
+            blueFragment.onMsgFromMainToFragment(students,position);
         }
         if (sender.equals("BLUE-FRAG")) {
             try {

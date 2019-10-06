@@ -12,15 +12,19 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 
-public class FragmentBlue extends Fragment {
+public class FragmentBlue extends Fragment implements FragmentCallback{
     MainActivity main;
     Context context = null;
     // data to fill-up the ListView
@@ -29,26 +33,10 @@ public class FragmentBlue extends Fragment {
             R.drawable.ntitled5,R.drawable.ntitled6,R.drawable.ntitled7,R.drawable.ntitled8,R.drawable.ntitled9,
             R.drawable.ntitled10,R.drawable.ntitled1,R.drawable.ntitled2,R.drawable.ntitled3,R.drawable.ntitled4,
             R.drawable.ntitled5};
-    /*Student stu1 = new Student("1","name1","class", 9.5f,1);
-    Student stu2 = new Student("2","name2","class2", 9.5f,2);
-    Student stu3 = new Student("3","name3","class", 9.5f,1);
-    Student stu4 = new Student("4","name4","class2", 9.5f,2);
-    Student stu5 = new Student("5","name5","class", 9.5f,1);
-    Student stu6 = new Student("6","name6","class2", 9.5f,2);
-    Student stu7 = new Student("7","name7","class", 9.5f,1);
-    Student stu8 = new Student("8","name8","class2", 9.5f,2);
-
-    public FragmentBlue() {
-        main = null;
-        students.add(stu1);
-        students.add(stu2);
-        students.add(stu3);
-        students.add(stu4);
-        students.add(stu5);
-        students.add(stu6);
-        students.add(stu7);
-        students.add(stu8);
-    }*/
+    LinearLayout layout_blue;
+    TextView txtBlue;
+    ListView listView;
+    CustomListAdapter adapter;
 
     private void readResource() throws IOException
     {
@@ -98,13 +86,13 @@ public class FragmentBlue extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
 
-        LinearLayout layout_blue = (LinearLayout) inflater.inflate(R.layout.layout_blue,null);
+        layout_blue = (LinearLayout) inflater.inflate(R.layout.layout_blue,null);
 
-        final TextView txtBlue = (TextView) layout_blue.findViewById(R.id.textViewBlue);
-        ListView listView = (ListView) layout_blue.findViewById(R.id.listViewBlue);
+        txtBlue = (TextView) layout_blue.findViewById(R.id.textViewBlue);
+        listView = (ListView) layout_blue.findViewById(R.id.listViewBlue);
         listView.setBackgroundColor(Color.parseColor("#ffccddff"));
 
-        CustomListAdapter adapter = new CustomListAdapter(context,
+        adapter = new CustomListAdapter(context,
                 R.layout.layout_list_item, students);
         listView.setAdapter(adapter);
 
@@ -114,14 +102,25 @@ public class FragmentBlue extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
+                v.setSelected(true);
                 main.onMsgFromFragToMain("BLUE-FRAG", students, position);
                 txtBlue.setText("Blue selected row=" + position);
             }
         });
 
+
+
         return layout_blue;
 
     }
 
+    @Override
+    public void onMsgFromMainToFragment(List<Student> students, int position)
+    {
+        listView.performItemClick(listView,position,1);
+        //listView.setSelection(position);
+
+        adapter.notifyDataSetChanged();
+        Toast.makeText(main,"Selected:!" + position, LENGTH_SHORT).show();
+    }
 }
