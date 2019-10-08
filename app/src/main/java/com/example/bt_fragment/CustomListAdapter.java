@@ -17,13 +17,15 @@ public class CustomListAdapter extends ArrayAdapter<Student> {
     Context context;
     ArrayList<Student> students;
 
+    int posSelected;
     int layoutToBeInflated;
 
-    public CustomListAdapter(Context context, int resource, ArrayList<Student> students)
+    public CustomListAdapter(Context context, int resource, ArrayList<Student> students, int selected)
     {
         super(context, R.layout.layout_list_item, students);
         this.context = context;
         this.students = students;
+        this.posSelected=selected; //mark that which item is selected => change color
         layoutToBeInflated = resource;
     }
 
@@ -37,6 +39,7 @@ public class CustomListAdapter extends ArrayAdapter<Student> {
         return position;
     }
 
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         View row = layoutInflater.inflate(R.layout.layout_list_item, null);
@@ -48,6 +51,11 @@ public class CustomListAdapter extends ArrayAdapter<Student> {
         imgIcon.setImageResource(students.get(position).getIcon());
 
         parent.setBackgroundColor(Color.TRANSPARENT);
+
+        if (position==posSelected)
+        {
+            row.setBackgroundColor(Color.GREEN);
+        }
         return row;
     }
 }

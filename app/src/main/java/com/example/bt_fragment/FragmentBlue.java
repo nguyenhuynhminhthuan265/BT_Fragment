@@ -37,7 +37,6 @@ public class FragmentBlue extends Fragment implements FragmentCallback{
     TextView txtBlue;
     ListView listView;
     CustomListAdapter adapter;
-    int oldPos=0;
 
     private void readResource() throws IOException
     {
@@ -93,7 +92,7 @@ public class FragmentBlue extends Fragment implements FragmentCallback{
         listView = (ListView) layout_blue.findViewById(R.id.listViewBlue);
         listView.setBackgroundColor(Color.parseColor("#ffccddff"));
 
-        adapter = new CustomListAdapter(context,R.layout.layout_list_item, students);
+        adapter = new CustomListAdapter(context,R.layout.layout_list_item, students,-1); //first time
         listView.setAdapter(adapter);
 
 
@@ -101,31 +100,22 @@ public class FragmentBlue extends Fragment implements FragmentCallback{
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 main.onMsgFromFragToMain("BLUE-FRAG", students, position);
-                Toast.makeText(main,"Selected:!" + position, LENGTH_SHORT).show();
+                Toast.makeText(main,"Selected: " + position, LENGTH_SHORT).show();
                 txtBlue.setText("Mã số: " + students.get(position).get_id());
 
-                if (position!=oldPos)
-                {
+                adapter = new CustomListAdapter(context,R.layout.layout_list_item, students,position); //uodate adapter with new selected item to change color
+                listView.setAdapter(adapter); //update new adapter to listview
 
-                    listView.getChildAt(oldPos).setBackgroundColor(Color.TRANSPARENT);
-                    listView.getChildAt(position).setBackgroundColor(Color.GREEN);
-                }
-
-                oldPos=position;
+                listView.setSelection(position); //select again to scroll screen to selected item
             }
         });
 
-
-
         return layout_blue;
-
     }
 
     @Override
     public void onMsgFromMainToFragment(List<Student> students, int position)
     {
-        listView.performItemClick(listView,position,listView.getAdapter().getItemId(position));
-
-        Toast.makeText(main,"Selected:!" + position, LENGTH_SHORT).show();
+        listView.performItemClick(listView,position,listView.getAdapter().getItemId(position)); //call function setOnItemClickListener() above by emulator an clicking - action
     }
 }
