@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -66,6 +65,10 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         btnNext = (Button) view_layout_red.findViewById(R.id.btnNext);
         btnPre = (Button) view_layout_red.findViewById(R.id.btnPrev);
         btnLast = (Button) view_layout_red.findViewById(R.id.btnLast);
+        btnFirst.getBackground().setAlpha(60);
+        btnLast.getBackground().setAlpha(60);
+        btnPre.getBackground().setAlpha(60);
+        btnNext.getBackground().setAlpha(60);
 
         return view_layout_red;
 
@@ -95,7 +98,7 @@ public class FragmentRed extends Fragment implements FragmentCallback {
                 btnPre.setEnabled(true);
                 btnPre.getBackground().setAlpha(255);
                 btnLast.setEnabled(false);
-                btnLast.getBackground().setAlpha(255);
+                btnLast.getBackground().setAlpha(60);
 
             }
             else
@@ -125,13 +128,6 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         btnFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // String redMessage = "Red clock:\n" + new Date().toString();
-                //maSo.setText(redMessage);
-                //main.onMsgFromFragToMain("RED-FRAG", redMessage);
-               /* maSo.setText(students.get(0).get_id());
-                hoTen.setText(students.get(0).get_name());
-                lop.setText(students.get(0).get_class());
-                diem.setText(String.valueOf(students.get(0).get_grade()));*/
                 main.onMsgFromFragToMain("RED-FRAG", students, 0);
                 onMsgFromMainToFragment(students, 0);
 
@@ -140,13 +136,6 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         btnLast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // String redMessage = "Red clock:\n" + new Date().toString();
-                //maSo.setText(redMessage);
-                //main.onMsgFromFragToMain("RED-FRAG", redMessage);
-               /* maSo.setText(students.get(students.size() -1).get_id());
-                hoTen.setText(students.get(students.size() -1).get_name());
-                lop.setText(students.get(students.size() -1).get_class());
-                diem.setText(String.valueOf(students.get(students.size() -1).get_grade()));*/
                 main.onMsgFromFragToMain("RED-FRAG", students, students.size() -1);
                 onMsgFromMainToFragment(students, students.size() -1);
 
@@ -155,13 +144,6 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         btnPre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // String redMessage = "Red clock:\n" + new Date().toString();
-                //maSo.setText(redMessage);
-                //main.onMsgFromFragToMain("RED-FRAG", redMessage);
-//                maSo.setText(students.get(position-1).get_id());
-//                hoTen.setText(students.get(position-1).get_name());
-//                lop.setText(students.get(position-1).get_class());
-//                diem.setText(String.valueOf(students.get(position-1).get_grade()));
                 if (position>0){
                     main.onMsgFromFragToMain("RED-FRAG", students, position-1);
                     onMsgFromMainToFragment(students, position-1);
@@ -173,13 +155,6 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // String redMessage = "Red clock:\n" + new Date().toString();
-                //maSo.setText(redMessage);
-                //main.onMsgFromFragToMain("RED-FRAG", redMessage);
-//                maSo.setText(students.get(position+1).get_id());
-//                hoTen.setText(students.get(position+1).get_name());
-//                lop.setText(students.get(position+1).get_class());
-//                diem.setText(String.valueOf(students.get(position+1).get_grade()));
                 if (position<students.size() -1){
                     main.onMsgFromFragToMain("RED-FRAG", students,position+1);
                     onMsgFromMainToFragment(students, position+1);
