@@ -27,6 +27,16 @@ public class CustomListAdapter extends ArrayAdapter<Student> {
         layoutToBeInflated = resource;
     }
 
+    @Override
+    public int getViewTypeCount() {
+        return getCount();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         View row = layoutInflater.inflate(R.layout.layout_list_item, null);

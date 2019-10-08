@@ -70,6 +70,48 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         return view_layout_red;
 
     }
+
+    private void setButtonClickable(final List<Student> arr,int  pos)
+    {
+        if (pos==0)
+        {
+            btnFirst.setEnabled(false);
+            btnFirst.getBackground().setAlpha(60);
+            btnNext.setEnabled(true);
+            btnNext.getBackground().setAlpha(255);
+            btnPre.setEnabled(false);
+            btnPre.getBackground().setAlpha(60);
+            btnLast.setEnabled(true);
+            btnLast.getBackground().setAlpha(255);
+
+        }
+        else
+            if (pos==arr.size()-1)
+            {
+                btnFirst.setEnabled(true);
+                btnFirst.getBackground().setAlpha(255);
+                btnNext.setEnabled(false);
+                btnNext.getBackground().setAlpha(60);
+                btnPre.setEnabled(true);
+                btnPre.getBackground().setAlpha(255);
+                btnLast.setEnabled(false);
+                btnLast.getBackground().setAlpha(255);
+
+            }
+            else
+            {
+                btnFirst.setEnabled(true);
+                btnFirst.getBackground().setAlpha(255);
+                btnNext.setEnabled(true);
+                btnNext.getBackground().setAlpha(255);
+                btnPre.setEnabled(true);
+                btnPre.getBackground().setAlpha(255);
+                btnLast.setEnabled(true);
+                btnLast.getBackground().setAlpha(255);
+
+            }
+    }
+
     @Override
     public void onMsgFromMainToFragment(final List<Student> students, final int position) {
 // receiving a message from MainActivity (it may happen at any point in time)
@@ -78,17 +120,18 @@ public class FragmentRed extends Fragment implements FragmentCallback {
         hoTen.setText(students.get(position).get_name());
         lop.setText(students.get(position).get_class());
         diem.setText(String.valueOf(students.get(position).get_grade()));
-        final int size = students.size() - 1;
+        setButtonClickable(students,position);
+
         btnFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                // String redMessage = "Red clock:\n" + new Date().toString();
                 //maSo.setText(redMessage);
                 //main.onMsgFromFragToMain("RED-FRAG", redMessage);
-                maSo.setText(students.get(0).get_id());
+               /* maSo.setText(students.get(0).get_id());
                 hoTen.setText(students.get(0).get_name());
                 lop.setText(students.get(0).get_class());
-                diem.setText(String.valueOf(students.get(0).get_grade()));
+                diem.setText(String.valueOf(students.get(0).get_grade()));*/
                 main.onMsgFromFragToMain("RED-FRAG", students, 0);
                 onMsgFromMainToFragment(students, 0);
 
@@ -100,12 +143,12 @@ public class FragmentRed extends Fragment implements FragmentCallback {
                 // String redMessage = "Red clock:\n" + new Date().toString();
                 //maSo.setText(redMessage);
                 //main.onMsgFromFragToMain("RED-FRAG", redMessage);
-                maSo.setText(students.get(size).get_id());
-                hoTen.setText(students.get(size).get_name());
-                lop.setText(students.get(size).get_class());
-                diem.setText(String.valueOf(students.get(size).get_grade()));
-                main.onMsgFromFragToMain("RED-FRAG", students, size);
-                onMsgFromMainToFragment(students, size);
+               /* maSo.setText(students.get(students.size() -1).get_id());
+                hoTen.setText(students.get(students.size() -1).get_name());
+                lop.setText(students.get(students.size() -1).get_class());
+                diem.setText(String.valueOf(students.get(students.size() -1).get_grade()));*/
+                main.onMsgFromFragToMain("RED-FRAG", students, students.size() -1);
+                onMsgFromMainToFragment(students, students.size() -1);
 
             }
         });
@@ -137,7 +180,7 @@ public class FragmentRed extends Fragment implements FragmentCallback {
 //                hoTen.setText(students.get(position+1).get_name());
 //                lop.setText(students.get(position+1).get_class());
 //                diem.setText(String.valueOf(students.get(position+1).get_grade()));
-                if (position<size){
+                if (position<students.size() -1){
                     main.onMsgFromFragToMain("RED-FRAG", students,position+1);
                     onMsgFromMainToFragment(students, position+1);
                 }

@@ -11,7 +11,7 @@
         android:id="@+id/textViewBlue"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="Blue Layout"
+        android:text="Mã số:"
         android:layout_weight="1"
         android:textColor="#2155F3"
         android:textStyle="bold"

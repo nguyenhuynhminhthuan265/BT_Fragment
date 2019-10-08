@@ -37,6 +37,7 @@ public class FragmentBlue extends Fragment implements FragmentCallback{
     TextView txtBlue;
     ListView listView;
     CustomListAdapter adapter;
+    int oldPos=0;
 
     private void readResource() throws IOException
     {
@@ -92,19 +93,25 @@ public class FragmentBlue extends Fragment implements FragmentCallback{
         listView = (ListView) layout_blue.findViewById(R.id.listViewBlue);
         listView.setBackgroundColor(Color.parseColor("#ffccddff"));
 
-        adapter = new CustomListAdapter(context,
-                R.layout.layout_list_item, students);
+        adapter = new CustomListAdapter(context,R.layout.layout_list_item, students);
         listView.setAdapter(adapter);
 
-//        listView.setSelection(0);
-//        listView.smoothScrollToPosition(0);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                v.setSelected(true);
                 main.onMsgFromFragToMain("BLUE-FRAG", students, position);
-                txtBlue.setText("Blue selected row=" + position);
+                Toast.makeText(main,"Selected:!" + position, LENGTH_SHORT).show();
+                txtBlue.setText("Mã số: " + students.get(position).get_id());
+
+                if (position!=oldPos)
+                {
+
+                    listView.getChildAt(oldPos).setBackgroundColor(Color.TRANSPARENT);
+                    listView.getChildAt(position).setBackgroundColor(Color.GREEN);
+                }
+
+                oldPos=position;
             }
         });
 
@@ -117,10 +124,8 @@ public class FragmentBlue extends Fragment implements FragmentCallback{
     @Override
     public void onMsgFromMainToFragment(List<Student> students, int position)
     {
-        listView.performItemClick(listView,position,1);
-        //listView.setSelection(position);
+        listView.performItemClick(listView,position,listView.getAdapter().getItemId(position));
 
-        adapter.notifyDataSetChanged();
         Toast.makeText(main,"Selected:!" + position, LENGTH_SHORT).show();
     }
 }
